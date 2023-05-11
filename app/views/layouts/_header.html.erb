@@ -1,0 +1,71 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!--<div class="container">-->
+    <div class="container d-flex justify-content-between">
+      
+      <!-- ヘッダ画像 -->
+      <a class="navbar-brand p-3" href="/"><%= image_tag('noimage',width:100) %></a>
+      
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+          <!-- userr -->
+　　　　　<% if user_signed_in? %>
+　　　　　  
+　　　　　  <!-- sign out -->
+            <li class="nav-item">
+              <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-light' do %>
+                <i class="fas fa-sign-out-alt"></i> ログアウト
+              <% end %>
+            </li>
+
+          <!-- admin -->
+          <% elsif admin_signed_in? %>
+
+            <!-- sign out -->
+            <li class="nav-item">
+              <%= link_to destroy_admin_session_path, method: :delete,class: 'nav-link text-light' do %>
+                <i class="fas fa-sign-out-alt"></i> ログアウト
+              <% end %>
+            </li>
+       
+          <% else %>
+
+            <!-- About 追記2023/04/22　18：30 suzuki -->
+            <li class="nav-item">
+              <%= link_to about_path ,class: 'nav-link text-light' do %>
+                <i class="fas fa-link"></i> About
+              <% end %>
+            </li>
+
+            <!--新規登録 -->
+            <li class="nav-item">
+              <%= link_to new_user_registration_path,class: 'nav-link text-light' do %>
+                <i class="fas fa-user-plus"></i> ユーザ登録
+              <% end %>
+            </li>
+            
+            <!-- ログイン -->
+            <li class="nav-item">
+              <%= link_to new_user_session_path ,class: 'nav-link text-light' do %>
+                <i class="fas fa-sign-in-alt"></i> ログイン
+              <% end %>
+            </li>
+            
+            <li class="nav-item">
+              <%= link_to homes_guest_sign_in_path, method: :post ,class: 'nav-link text-light' do %>
+                <i class="fas fa-user-clock"></i> ゲストログイン(閲覧用)
+              <% end %>
+            </li>
+            
+
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,10 @@
+<h1>TOP PAGE</h1>
+
+<% if user_signed_in? %>
+
+  <%= link_to '新規投稿', new_post_path %><br>
+  <%= link_to '投稿一覧', posts_path %><br>
+
+<%# elsif admin_signed_in? %>
+
+<% end %>
