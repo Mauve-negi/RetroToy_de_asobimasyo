@@ -6,7 +6,8 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = Posts.user_id(current_user)
+    # @posts = Posts.user_id(current_user)
+    @posts = Post.where(user_id: @user.id)
   end
 
   def edit
