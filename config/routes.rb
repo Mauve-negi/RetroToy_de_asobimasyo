@@ -23,5 +23,11 @@ Rails.application.routes.draw do
     get 'posts/index'
     post 'homes/guest_sign_in', to: 'homes#guest_sign_in'
   end
-
+  
+  namespace :admin do
+    root to: 'users#index'
+    resources :users
+    # resources :orders, only: [:index, :show, :update]
+  end
+  
 end
