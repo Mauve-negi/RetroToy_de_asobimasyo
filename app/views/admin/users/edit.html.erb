@@ -1,0 +1,28 @@
+<br>
+<br>
+
+<div class="container">
+  <h2 class="text-center my-4">Admin Edit / ユーザ情報変更</h2>
+  <%= form_with model: @user, url: admin_user_path(@user), class: "my-4" do |f| %>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="mb-3">
+          <%= f.label :email, "メール" %>
+          <%= f.text_field :email, autofocus: true, class: "form-control", id: "email" %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <%= f.label :nickname, "おなまえ" %>
+          <%= f.text_field :nickname, autofocus: true, class: "form-control", id: "nickname" %>
+        </div>
+      </div>
+    </div>
+
+    <%= f.submit "Update User", class: "btn btn-primary" %>
+  <% end %>
+  <div class="my-4">
+    <%= link_to 'ユーザ詳細', admin_user_path(@user), class: "btn btn-secondary" %>
+    <%= link_to '管理者TOP', admin_users_path, class: "btn btn-secondary me-2" %>
+  </div>
+</div>

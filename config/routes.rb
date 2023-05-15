@@ -17,8 +17,10 @@ Rails.application.routes.draw do
   }
 
   scope module: :public do
+    # root to: "users#index"
     root to: "homes#index"
     resources :posts
+    resources :users
     get "about"=> 'homes#about'
     get 'posts/index'
     post 'homes/guest_sign_in', to: 'homes#guest_sign_in'

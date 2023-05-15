@@ -1,0 +1,23 @@
+ja:
+  enums:
+    user:
+      play_ground_1:
+        no_pg1: "なし"　　　　
+        tokyo_pg1: "東京"
+        saitama_pg1: "埼玉"
+        
+ja:
+  enums:
+    user:
+      play_ground_2:
+        no_pg2: "なし"　　　　
+        tokyo_pg2: "東京"
+        saitama_pg2: "埼玉"
+        
+ja:
+  enums:
+    user:
+      play_ground_3:
+        no_pg3: "なし"　　　　
+        tokyo_pg3: "東京"
+        saitama_pg3: "埼玉"

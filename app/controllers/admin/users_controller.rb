@@ -1,7 +1,13 @@
 class Admin::UsersController < ApplicationController
 
+  # def index
+  #   @users = User.all
+  #   @posts = Post.where(user_id: current_user.id)
+  # end
+  
   def index
     @users = User.all
+    @posts = Post.all
   end
 
   def show
@@ -17,7 +23,11 @@ class Admin::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      # redirect_to admin_customer_path, notice: "You have updated user successfully."
+      if @user = current_user
+        redirect_to root_path, notice: "You have updated user successfully."
+      else
+        redirect_to admin_user_path(@user), notice: "You have updated user successfully."
+      end
     else
       # render "show"
       # render :edit

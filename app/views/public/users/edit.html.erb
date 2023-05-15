@@ -1,0 +1,32 @@
+<br>
+<br>
+
+<div class="container">
+  <h2 class="text-center my-4">User Edit / ユーザ情報変更</h2>
+  <%= form_with model: @user, url: user_path(@user), class: "my-4" do |f| %>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="mb-3">
+          <%= f.label :email, "メール" %>
+          <%= f.text_field :email, autofocus: true, class: "form-control", id: "email" %>
+        </div>
+        <!--<div>  -->
+          <%#= f.select :play_ground_1, User.play_ground_1.keys.map {|k| [I18n.t("enums.user.play_ground_1.#{k}"), k]} %>
+          <%#= f.select :play_ground_1, User.new.play_ground_1.keys.map {|k| [I18n.t("enums.user.play_ground_1.#{k}"), k]} %>
+          <%#= f.select :play_ground_1, User.new.play_ground_1.keys.map {|k| [I18n.t("enums.user.play_ground_1.#{k}"), k.to_s]} %>
+        <!--</div>-->
+      </div>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <%= f.label :nickname, "おなまえ" %>
+          <%= f.text_field :nickname, autofocus: true, class: "form-control", id: "nickname" %>
+        </div>
+      </div>
+    </div>
+
+    <%= f.submit "Update User", class: "btn btn-primary" %>
+  <% end %>
+  <div class="my-4">
+    <%= link_to 'top', root_path, class: "btn btn-secondary" %>
+  </div>
+</div>
