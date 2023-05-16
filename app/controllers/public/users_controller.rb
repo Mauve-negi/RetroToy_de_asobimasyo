@@ -16,13 +16,23 @@ class Public::UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
-    if @user.update(user_params)
-      redirect_to admin_user_path(@user), notice: "You have updated user successfully."
-    else
-      # render "show"
-      # render :edit
-    end
+    @user = current_user#User.find(params[:id])
+      if @user.update(user_params)
+         flash[:success] = "登録情報を変更しました"
+         redirect_to root_path
+      else
+         render :edit
+      end
+    # if @user.update(user_params)
+    #   if @user = current_user
+    #     redirect_to root_path, notice: "You have updated user successfully."
+    #   else
+    #     redirect_to admin_user_path(@user), notice: "You have updated user successfully."
+    #   end
+    # else
+    #   # render "show"
+    #   # render :edit
+    # end
   end
 
   private

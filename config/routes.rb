@@ -19,13 +19,16 @@ Rails.application.routes.draw do
   scope module: :public do
     # root to: "users#index"
     root to: "homes#index"
-    resources :posts
+    resources :posts do
+      resources :post_comments
+      resource :favorites
+    end
     resources :users
     get "about"=> 'homes#about'
     get 'posts/index'
     post 'homes/guest_sign_in', to: 'homes#guest_sign_in'
   end
-  
+
   namespace :admin do
     root to: 'users#index'
     resources :users

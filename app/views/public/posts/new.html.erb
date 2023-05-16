@@ -9,6 +9,9 @@
   
   <h4>画像</h4>
   <%= f.file_field :image, accept: "image/*" %>
+  
+  <%= f.label :post_type, "投稿タイプ" %>
+  <%= f.select :post_type, Post.post_types.keys.map {|k| [I18n.t("enums.post.post_type.#{k}"), k]} %>
 	
   <%= f.submit '投稿' %>
 <% end %>
