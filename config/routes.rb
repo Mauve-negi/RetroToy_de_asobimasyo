@@ -23,7 +23,14 @@ Rails.application.routes.draw do
       resources :post_comments
       resource :favorites
     end
-    resources :users
+    
+    resources :users do
+      member do
+        get :follows, :followers
+      end
+      resource :relationships, only: [:create, :destroy]
+    end
+    
     get "about"=> 'homes#about'
     get 'posts/index'
     post 'homes/guest_sign_in', to: 'homes#guest_sign_in'

@@ -6,6 +6,7 @@
       <tr>
         <th>記事タイプ</th>
         <th>Title</th>
+        <th>投稿者</th> <!-- だめ -->
         <th></th>
       </tr>
     </thead>
@@ -15,6 +16,7 @@
         <tr>
           <td><%= post_val.post_type == 'nikki' ? '日記' : 'このゆびとまれ' %></td>
           <td><%= post_val.title %></td>
+          <td><%= @user.nickname %></td> <!-- だめ -->
           <td>
             <%= link_to "Show", post_path(post_val), class: "btn btn-primary" %>
             <% if post_val.user == current_user %>
