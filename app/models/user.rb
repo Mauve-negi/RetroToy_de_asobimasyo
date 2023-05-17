@@ -9,19 +9,18 @@ class User < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   
-  # 自分がフォローされる（被フォロー）側の関係性
-  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
-  # 被フォロー関係を通じて参照→自分をフォローしている人
-  has_many :followers, through: :reverse_of_relationships, source: :follower
-  
-  # 自分がフォローする（与フォロー）側の関係性
-  has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
-  # 与フォロー関係を通じて参照→自分がフォローしている人
-  has_many :followings, through: :relationships, source: :followed
+  #フォロー/フォロワ
+  has_many :relationships, foreign_key: :follower_id, dependent: :destroy
+  has_many :followed_users, through: :relationships, source: :followed
 
+  has_many :reverse_relationships, foreign_key: :followed_id, class_name: "Relationship", dependent: :destroy
+  has_many :follower_users, through: :reverse_relationships, source: :follower
+  #フォロー/フォロワ
 
+  #おなまえバリデーション
   validates :nickname, uniqueness: false, length: { minimum: 1, maximum: 20 }
   # validates :introduction, length: { maximum: 50 }
+
 
   enum play_ground_1: {
       no_pg1: 0, hokkaido_pg1: 1, aomori_pg1: 2,iwate_pg1: 3,miyagi_pg1: 4,akita_pg1: 5,yamagata_pg1: 6,fukushima_pg1: 7,
@@ -64,6 +63,7 @@ class User < ApplicationRecord
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
   
+  #フォロー/フォロワ
   def follow(user)
     relationships.create(followed_id: user.id)
   end
@@ -72,8 +72,12 @@ class User < ApplicationRecord
     relationships.find_by(followed_id: user.id).destroy
   end
 
+  # def following?(user)
+  #   followings.include?(user)
+  # end
   def following?(user)
-    followings.include?(user)
+    followed_users.include?(user)
   end
+  #フォロー/フォロワ
 
 end

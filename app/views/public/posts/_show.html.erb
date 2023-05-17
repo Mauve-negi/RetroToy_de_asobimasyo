@@ -1,0 +1,64 @@
+
+<br>
+<br>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="post-details">
+        <h4>タイトル</h4>
+        <p><%= @post.title %></p>
+        
+        <h4>投稿タイプ</h4>
+        <p><%= @post.post_type == 'nikki' ? '日記' : 'このゆびとまれ' %></p>
+        
+        <h4>本文</h4>
+        <p><%= @post.body %></p>
+      </div>
+
+      <div>
+        <p>コメント件数：<%= @post.post_comments.count %></p>
+        <% @post.post_comments.each do |post_comment| %>
+          <div class="media">
+            <%= image_tag post_comment.user.get_profile_image(100, 100), class: "mr-3", alt: "プロフィール画像" %>
+            <div class="media-body">
+              <h5><%= post_comment.user.nickname %></h5>
+              <p><%= post_comment.created_at.strftime('%Y/%m/%d') %></p>
+              <p><%= post_comment.comment %></p>
+              <% if post_comment.user == current_user %>
+                <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+        
+        <!-- ふぁぼ機能 -->
+        <% if @post.user != current_user %>
+          <% if @post.favorited_by?(current_user) %>
+            <p>
+              <%= link_to post_favorites_path(@post), method: :delete, class: "btn btn-outline-danger btn-sm" do %>
+                ♥ <%= @post.favorites.count %> いいね
+              <% end %>
+            </p>
+          <% else %>
+            <%= link_to post_favorites_path(@post), method: :post, class: "btn btn-outline-primary btn-sm" do %>
+              ♡ <%= @post.favorites.count %> いいね
+            <% end %>
+          <% end %>
+        <% end %>
+        <!-- ふぁぼ機能 -->
+
+        <% if @post.user == current_user %>
+          <%= link_to '削除', @post, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-danger btn-sm" %>
+        <% end %>
+      </div>
+      
+      <div>
+        <%= form_with model: [@post, PostComment.new], html: { class: "mt-4" } do |f| %>
+          <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", class: "form-control" %>
+          <%= f.submit "送信する", class: "btn btn-primary mt-2" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

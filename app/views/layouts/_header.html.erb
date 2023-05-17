@@ -4,7 +4,7 @@
     <div class="container d-flex justify-content-between">
       
       <!-- ヘッダ画像 -->
-      <a class="navbar-brand p-3" href="/"><%= image_tag('noimage',width:100) %></a>
+      <a class="navbar-brand p-3" href="/users"><%= image_tag('topimage',width:100) %></a>
       
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                     aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,12 +13,30 @@
       
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-          <!-- userr -->
+          <!-- user -->
 　　　　　<% if user_signed_in? %>
 　　　　　  
-　　　　　  <!-- sign out -->
             <li class="nav-item">
-              <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-light' do %>
+              <%= link_to users_path, class: 'nav-link text-light d-flex align-items-center' do %>
+                <i class="fas fa-desktop"></i> TOPページ
+              <% end %>
+            </li>
+            
+            <li class="nav-item">
+              <%= link_to new_post_path(current_user), class: 'nav-link text-light d-flex align-items-center' do %>
+                <i class="fas fa-plus-square"></i> 新規投稿
+              <% end %>
+            </li>
+            
+            <li class="nav-item">
+              <%= link_to edit_user_path(current_user), class: 'nav-link text-light d-flex align-items-center' do %>
+                <i class="fas fa-user-cog"></i> ユーザ情報変更
+              <% end %>
+            </li>
+            
+            <!-- sign out -->
+            <li class="nav-item">
+              <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-light d-flex align-items-center' do %>
                 <i class="fas fa-sign-out-alt"></i> ログアウト
               <% end %>
             </li>

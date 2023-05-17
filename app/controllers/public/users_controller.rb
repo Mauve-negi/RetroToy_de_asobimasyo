@@ -5,12 +5,18 @@ class Public::UsersController < ApplicationController
     @posts = Post.all
   end
 
+  # def show
+  #   @user = User.find(params[:id])# @posts = Posts.user_id(current_user)
+  #   @posts = Post.where(user_id: @user.id)
+  #   @following_users = @user.following_users
+  #   @follower_users = @user.follower_users
+  # end
+  
   def show
     @user = User.find(params[:id])
-    # @posts = Posts.user_id(current_user)
     @posts = Post.where(user_id: @user.id)
-    @following_users = @user.following_user
-    @follower_users = @user.follower_user
+    @following_users = @user.followed_users
+    @follower_users = @user.follower_users
   end
 
   def edit
@@ -37,21 +43,30 @@ class Public::UsersController < ApplicationController
     # end
   end
   
+  # def follows
+  #   user = User.find(params[:id])
+  #   @users = user.following_user.page(params[:page]).per(3).reverse_order
+  # end
   def follows
     user = User.find(params[:id])
-    @users = user.following_user.page(params[:page]).per(3).reverse_order
+    @users = user.followed_users.reverse_order
   end
-  
+
+  # def followers
+  #   user = User.find(params[:id])
+  #   @users = user.follower_user.page(params[:page]).per(3).reverse_order
+  # end
   def followers
     user = User.find(params[:id])
-    @users = user.follower_user.page(params[:page]).per(3).reverse_order
+    @users = user.follower_users
   end
+
 
   private
 
   def user_params
     params.require(:user).permit(:email, :nickname, :like_toy_1, :like_toy_2, :like_toy_3,
-      :play_ground_1, :play_ground_2, :play_ground_3)
+      :play_ground_1, :play_ground_2, :play_ground_3, :introduction, :profile_image)
   end
 
 end

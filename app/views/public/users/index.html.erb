@@ -7,13 +7,11 @@
   <!--</div>-->
   
   <div class='row'>
-    <div class='col-md-3'>
-      <h2>User info</h2>
-      <%= render 'public/users/userinfo'%><!--, user: current_user, following_users: current_user.following_user, follower_users: current_user.follower_user %>-->
+    <div class='col-md-4'>
+      <%= render 'public/users/userinfo', user: current_user, following_users: current_user.follower_users, follower_users: current_user.follower_users %>
       <!--<%#= render 'books/form', book: @book %>-->
     </div>
-    <div class='col-md-8 offset-md-1'>
-      <h2>Users</h2>
+    <div class='col-md-8'>
       <%= render 'public/posts/list',users: @users, posts: @posts %>
     </div>
   </div>
