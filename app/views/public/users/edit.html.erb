@@ -1,0 +1,62 @@
+<br>
+<br>
+
+<div class="container">
+  <h2 class="text-center my-4">User Edit / ユーザ情報変更</h2>
+  <%= form_with model: @user, url: user_path(@user), class: "my-4" do |f| %>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="mb-3">
+          <%= f.label :nickname, "おなまえ" %>
+          <%= f.text_field :nickname, autofocus: true, class: "form-control", id: "nickname" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :profile_image, "プロフィール画像" %>
+          <%= f.file_field :profile_image, class: "form-control", id: "profile_image" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :play_ground_1, "あそびたいばしょ1" %>
+          <%= f.select :play_ground_1, User.play_ground_1s.keys.map {|k| [I18n.t("enums.user.play_ground_1.#{k}"), k]} %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :play_ground_2, "あそびたいばしょ2" %>
+          <%= f.select :play_ground_2, User.play_ground_2s.keys.map {|k| [I18n.t("enums.user.play_ground_2.#{k}"), k]} %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :play_ground_3, "あそびたいばしょ3" %>
+          <%= f.select :play_ground_3, User.play_ground_3s.keys.map {|k| [I18n.t("enums.user.play_ground_3.#{k}"), k]} %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <%= f.label :email, "メール" %>
+          <%= f.text_field :email, autofocus: true, class: "form-control", id: "email" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :like_toy_1, "すきなおもちゃ1" %>
+          <%= f.text_field :like_toy_1, autofocus: true, class: "form-control", id: "like_toy_1" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :like_toy_2, "すきなおもちゃ2" %>
+          <%= f.text_field :like_toy_2, autofocus: true, class: "form-control", id: "like_toy_2" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :like_toy_3, "すきなおもちゃ3" %>
+          <%= f.text_field :like_toy_3, autofocus: true, class: "form-control", id: "like_toy_3" %>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <%= f.label :introduction, "ひとこと" %>
+        <%= f.text_field :introduction, autofocus: true, class: "form-control", id: "introduction" %>
+      </div>
+    </div>
+    
+    <br>
+
+    <%= f.submit "ユーザ情報更新", class: "btn btn-primary" %>
+  <% end %>
+  <div class="my-4">
+    <%= link_to 'top', users_path, class: "btn btn-secondary" %>
+  </div>
+</div>

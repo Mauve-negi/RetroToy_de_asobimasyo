@@ -1,16 +1,28 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Yoteitatetta</title>
+    <title>レトロトイで遊びましょ</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <!-- PackTagに書き換え-->
+    <%#= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="d-flex flex-column vh-100">
+    <%= render 'layouts/header' %>
+    <%= render 'layouts/serch' %>
+      <main class="mb-auto">
+      <!--<p id="notice"><%#= notice %></p>-->
+      <% if notice.present? %>
+        <p id="notice" style="text-align: center; background-color: #f0f0f0; padding: 10px; margin: 0 auto; width: 50%; border-radius: 5px;">
+          <%= notice %>
+        </p>
+      <% end %>
+      <%= yield %>
+    <%= render 'layouts/footer' %>
   </body>
 </html>

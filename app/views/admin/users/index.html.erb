@@ -1,0 +1,23 @@
+<br>
+<br>
+<div class="container">
+  <table class="table">
+    <h2>管理者インデックス / カスタマー一覧</h2>
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">name</th>
+        <th scope="col">mail</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.nickname %></td>
+          <td><%= user.email %></td>
+          <td><%= link_to 'ユーザ詳細', admin_user_path(user), class: "btn btn-primary" %></td>
+        </tr>  
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,54 @@
+<!--<br>-->
+<!--<br>-->
+<!--<%#= image_tag @user.get_profile_image(100,100)%>-->
+<!--<p>おなまえ: <%#= @user.nickname %></p>-->
+<!--<p>すきなおもちゃ1: <%#= @user.like_toy_1 %></p>-->
+<!--<p>すきなおもちゃ2: <%#= @user.like_toy_2 %></p>-->
+<!--<p>すきなおもちゃ3: <%#= @user.like_toy_3 %></p>-->
+<!--<p>あそびたいばしょ1: <%# if @user[:play_ground_1].present? %><%#= I18n.t("enums.user.play_ground_1.#{@user[:play_ground_1]}") %><%# else %>なし<%# end %></p>-->
+<!--<p>あそびたいばしょ2: <%# if @user[:play_ground_2].present? %><%#= I18n.t("enums.user.play_ground_2.#{@user[:play_ground_2]}") %><%# else %>なし<%# end %></p>-->
+<!--<p>あそびたいばしょ3: <%# if @user[:play_ground_3].present? %><%#= I18n.t("enums.user.play_ground_3.#{@user[:play_ground_3]}") %><%# else %>なし<%# end %></p>-->
+
+
+
+<!--  <p class="d-flex justify-content-end">-->
+<!--   <%# if current_user != @user %>-->
+<!--   <%# if current_user.following?(@user) %>-->
+<!--   <%#= link_to 'フォロー外す', user_relationships_path(@user.id), method: :delete, class: "btn-sm btn-danger" %>-->
+<!--   <%# else %>-->
+<!--   <%#= link_to 'フォローする', user_relationships_path(@user.id), method: :POST, class:"btn-sm btn-success" %>-->
+<!--   <%# end %>-->
+<!--  </p>-->
+<!--  <%# end %>-->
+<!--  <div class="ml-3 mb-3 card w-100">-->
+<!--   <div class="d-flex">-->
+<!--   </div>-->
+<!--   <div class="d-flex">-->
+<!--     <%#= link_to follows_user_path(@user) do %>-->
+<!--      <h6>フォロー<%#= @following_users.count %></h6>-->
+<!--     <%# end %>&nbsp;&nbsp;-->
+<!--     <%#= link_to followers_user_path(@user) do %>-->
+<!--      <h6>フォロワー<%#= @follower_users.count %></h6>-->
+<!--     <%# end %>-->
+<!--   </div>-->
+<!--  </div>-->
+<!--  <div class=" row justify-content-center">-->
+
+
+<div class='container px-5 px-sm-0'>
+  
+  <!--<div class='row'>-->
+  <!--  <div class="col-md-5 mx-auto">-->
+  <!--    <%#= render 'searches/search' %>-->
+  <!--  </div>-->
+  <!--</div>-->
+  
+  <div class='row'>
+    <div class='col-md-4'>
+      <%= render 'public/users/userinfo', user: @user, following_users: @user.follower_users, follower_users: @user.follower_users %>
+    </div>
+    <div class='col-md-8'>
+      <%= render 'public/posts/list',users: @users, posts: @posts %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<br>
+<br>
+
+<table class="table table-hover table-inverse">
+  <!--検索対象モデルがUserの時 -->
+  <% if range == "ユーザ" %>
+    <h3>ユーザ検索結果</h3>
+    <tbody>
+      <% users.each do |user| %>
+        <tr>
+          <td>
+            <%= link_to(user) do %>
+              <%= image_tag user.get_profile_image(100,100)%> <%= user.nickname %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% else %>
+    <!--検索対象モデルがUserではない時(= 検索対象モデルがBookの時) -->
+    <tbody>
+      <h3>投稿検索結果</h3>
+      <% posts.each do |po| %>
+        <tr>
+          <td><%= po.post_type == 'nikki' ? '日記' : 'このゆびとまれ' %></td>
+          <td><%= link_to(po.title, post_path(po)) %></td>
+          <td><%= po.user.nickname %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% end %>
+</table>
