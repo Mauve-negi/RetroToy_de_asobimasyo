@@ -18,8 +18,8 @@ class Public::PostsController < ApplicationController
     @post.user_id = current_user.id
 
     if @post.save
-      flash[:notice] = "You have created post successfully."
-      redirect_to posts_path#post_path(@post.id)
+      flash[:notice] = "投稿できました"
+      redirect_to users_path#post_path(@post.id)
     else
       @posts = Post.all
       render :index
@@ -29,7 +29,8 @@ class Public::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to posts_path#'/posts/index'
+    flash[:notice] = "投稿を削除しました"
+    redirect_to users_path#'/posts/index'
   end
   
   private

@@ -9,11 +9,21 @@
     <div class="col-md-5 text-right">
     </div>
     <div class="col-md-7 text-left">
-      <p><%= @user.nickname %></p>
-      <p><%= @user.email %></p>
+      <p>なまえ：<%= @user.nickname %></p>
+      <p>メール：<%= @user.email %></p>
+      <p>ひとこと：<%= @user.introduction %></p>
+      <p><%= image_tag @user.get_profile_image(100, 100) %></p>
+      <p>すきなおもちゃ1：<%= @user.like_toy_1 %></p>
+      <p>すきなおもちゃ2：<%= @user.like_toy_2 %></p>
+      <p>すきなおもちゃ3：<%= @user.like_toy_3 %></p>
+      <p>あそびたい場所1：<% if @user[:play_ground_1].present? %><%= I18n.t("enums.user.play_ground_1.#{@user[:play_ground_1]}") %><% else %>なし<% end %></p>
+      <p>あそびたい場所2：<% if @user[:play_ground_2].present? %><%= I18n.t("enums.user.play_ground_2.#{@user[:play_ground_2]}") %><% else %>なし<% end %></p>
+      <p>あそびたい場所3：<% if @user[:play_ground_3].present? %><%= I18n.t("enums.user.play_ground_3.#{@user[:play_ground_3]}") %><% else %>なし<% end %></p>
+      <p></p>
       <p><%= link_to 'ユーザ情報変更', edit_admin_user_path(@user), class: "btn btn-primary" %></p>
+      <p><%= link_to 'ユーザ削除',admin_user_path, method: :delete,class: "btn btn-primary" %></p>
     </div>
   </div>
   <%= link_to '管理者TOP', admin_users_path, class: "btn btn-secondary me-2" %>
-  <%= link_to 'カスタマー一覧', admin_root_path, class: "btn btn-secondary me-2" %>
+  <%= link_to 'ユーザ一覧', admin_root_path, class: "btn btn-secondary me-2" %>
 </div>

@@ -1,0 +1,32 @@
+<!--<%# if user_signed_in? %>-->
+<!--  <div class="search_form">-->
+<!--    <%#= form_with url: search_path, local: true, method: :get do |f| %>-->
+<!--      <%#= f.text_field :word %>-->
+<!--      <%#= f.select :range, options_for_select([['ユーザ'], ['投稿']]) %>-->
+<!--      <%#= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backward_match"], ["部分一致","partial_match"]]) %>-->
+<!--      <%#= f.submit "検索", class: "btn btn-primary" %>-->
+<!--    <%# end %>-->
+<!--  </div>-->
+<!--<%# end %>-->
+
+<% if user_signed_in? %>
+  <div class="row justify-content-end">
+    <div class="col-lg-6">
+      <div class="search_form">
+        <%= form_with url: search_path, local: true, method: :get do |f| %>
+          検索：
+          <%= f.text_field :word %>
+          <%= f.select :range, options_for_select([['ユーザ'], ['投稿']]) %>
+          <%= f.select :search, options_for_select([["部分一致","partial_match"], ["完全一致","perfect_match"], ["前方一致","forward_match"], ["後方一致","backward_match"]]) %>
+          投稿タイプ検索：
+          <% if params[:range] == '投稿' %>
+            <%= f.select :post_type, options_for_select([['日記', 0], ['このゆびとまれ', 1]], params[:post_type]) %>
+          <% else %>
+            <%= f.select :post_type, options_for_select([['日記', 0], ['このゆびとまれ', 1]]) %>
+          <% end %>
+          <%= f.submit "検索", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

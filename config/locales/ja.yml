@@ -152,3 +152,8 @@ ja:
       post_type:
         nikki: "日記"
         konoyubitomare: "このゆびとまれ"
+  devise:
+    sessions:
+      user:
+        signed_in: "サインインしました"
+        signed_out: "サインアウトしました"

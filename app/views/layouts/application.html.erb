@@ -14,9 +14,15 @@
 
   <body class="d-flex flex-column vh-100">
     <%= render 'layouts/header' %>
+    <%= render 'layouts/serch' %>
       <main class="mb-auto">
+      <!--<p id="notice"><%#= notice %></p>-->
+      <% if notice.present? %>
+        <p id="notice" style="text-align: center; background-color: #f0f0f0; padding: 10px; margin: 0 auto; width: 50%; border-radius: 5px;">
+          <%= notice %>
+        </p>
+      <% end %>
       <%= yield %>
-      <p id="notice"><%= notice %></p>
     <%= render 'layouts/footer' %>
   </body>
 </html>
