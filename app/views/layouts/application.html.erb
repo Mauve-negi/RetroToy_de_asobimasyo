@@ -9,7 +9,8 @@
     <%#= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %> <!-- 本番環境に移行の際link_tagに戻した -->
     <!-- PackTagに書き換え-->
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%#= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %> <!-- link_tagじゃないとだめ？ -->
+    <%= javascript_link_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body class="d-flex flex-column vh-100">
