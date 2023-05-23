@@ -7,11 +7,11 @@
       <!--<a class="navbar-brand p-3" href="/users"><%#= image_tag('topimage',width:100) %></a>-->
       <% if user_signed_in? %>
         <a class="navbar-brand p-3" href="/users">
-          <%= image_tag('/app/assets/images/topimage.png', width: 100) %>
+          <%= image_tag('topimage.png', width: 100) %>
         </a>
       <% else %>
         <a class="navbar-brand p-3" href="<%= root_path %>">
-          <%= image_tag('/app/assets/images/topimage.png', width: 100) %>
+          <%= image_tag('topimage.png', width: 100) %>
         </a>
       <% end %>
 
